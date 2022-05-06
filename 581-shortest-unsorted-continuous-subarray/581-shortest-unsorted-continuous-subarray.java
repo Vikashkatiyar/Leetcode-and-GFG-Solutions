@@ -47,9 +47,10 @@ class Solution {
             }
         }
         
-        if(left>=right){
-            return 0;
-        }else{
+       if(left>=right){
+           return 0;
+       }
+        else{
             return right-left+1;
         }
         
