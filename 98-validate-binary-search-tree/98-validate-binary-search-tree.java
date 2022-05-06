@@ -14,25 +14,51 @@
  * }
  */
 class Solution {
-    public void inorder(TreeNode node,List<Integer> list){
-        if(node==null){
-            return ;
-        }
-        inorder(node.left,list);
-        list.add(node.val);
-        inorder(node.right,list);
-    }
+    Integer prev=null;
     public boolean isValidBST(TreeNode root) {
-        ArrayList<Integer> list=new ArrayList<>();
-        inorder(root,list);
-        
-        for(int i=1;i<list.size();i++){
-            if(list.get(i-1)>=list.get(i)){
-                return false;
-            }
+        if(root==null){
+            return true;
         }
-        return true;
+        
+        boolean left=isValidBST(root.left);
+        boolean self=true;
+        if( prev!=null && root.val<=prev){
+            return false;
+        }
+        else{
+            prev=root.val;
+        }
         
         
+        boolean right=isValidBST(root.right);
+        return left && right && self;
     }
 }
+
+
+
+
+
+
+
+// public void inorder(TreeNode node,List<Integer> list){
+//         if(node==null){
+//             return ;
+//         }
+//         inorder(node.left,list);
+//         list.add(node.val);
+//         inorder(node.right,list);
+//     }
+//     public boolean isValidBST(TreeNode root) {
+//         ArrayList<Integer> list=new ArrayList<>();
+//         inorder(root,list);
+        
+//         for(int i=1;i<list.size();i++){
+//             if(list.get(i-1)>=list.get(i)){
+//                 return false;
+//             }
+//         }
+//         return true;
+        
+        
+//     }
