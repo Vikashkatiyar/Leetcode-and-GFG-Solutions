@@ -7,7 +7,7 @@ class Solution {
             if(mid*mid==num){
                 return true;
             }
-            else if(mid*mid < num){
+            else if(mid*mid< num){
                 low=(int)mid+1;
             }
             else{
