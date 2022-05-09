@@ -39,3 +39,8 @@ class Solution {
         return new int[]{totalsum,totalnode};
     }
 }
+
+
+
+
+//ref=https://youtu.be/HO1UDDzz3O4
