@@ -121,12 +121,12 @@ class Tree
             return 0;
         }
         int sum=0;
-        
-        sum+= getCount(root.left,l,h);
-       sum+=getCount(root.right,l,h);
-       if(root.data>=l && root.data<=h){
+        if(root.data>=l && root.data<=h){
           sum++;
       }
+        sum+= getCount(root.left,l,h);
+        sum+=getCount(root.right,l,h);
+       
             
         
         
