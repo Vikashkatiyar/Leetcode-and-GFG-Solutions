@@ -30,8 +30,11 @@ class Solution {
             while(count-->0){
                 Node node=q.poll();
                 temp.add(node.val);
-                if(node.children!=null)
-                    q.addAll(node.children);
+                // if(node.children!=null)
+                //     q.addAll(node.children);
+                for(Node child:node.children){
+                    q.add(child);
+                }
             }
             res.add(temp);
         }
