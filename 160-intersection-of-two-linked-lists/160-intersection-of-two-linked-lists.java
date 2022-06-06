@@ -44,9 +44,9 @@ public class Solution {
         while(t1!=t2){
             t1=t1.next;
             t2=t2.next;
-            // if(t1==null || t2==null){
-            //     return null ;
-            // }
+            if(t1==null || t2==null){
+                return null ;
+            }
             
         }
         return t1;
