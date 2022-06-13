@@ -4,11 +4,11 @@ class Solution {
          dp[0][0] = triangle.get(0).get(0);
         for(int i=1;i<triangle.size();i++){
             for(int j=0;j<=i;j++){
-                if(j==0) 
+                if(j==0) //first column
                     dp[i][j]=dp[i-1][j];
-                else if(j==i)
+                else if(j==i)//last column
                     dp[i][j]=dp[i-1][j-1];
-                else 
+                else //other case(middle case);
                     dp[i][j]=Math.min(dp[i-1][j],dp[i-1][j-1]);
                 dp[i][j]+=triangle.get(i).get(j);
             }
