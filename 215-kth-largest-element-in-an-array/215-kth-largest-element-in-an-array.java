@@ -1,6 +1,12 @@
 class Solution {
     public int findKthLargest(int[] nums, int k) {
-        Arrays.sort(nums);
-        return nums[nums.length-k];
+         PriorityQueue<Integer> pq=new PriorityQueue<>();
+        for(int ele:nums){
+           pq.offer(ele);
+            while(pq.size()>k){
+                pq.poll();
+            }
+        }
+        return pq.peek();
     }
 }
