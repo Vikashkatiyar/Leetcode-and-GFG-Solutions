@@ -3,12 +3,14 @@ class Solution {
     // SC:O(1)
     public int minMoves2(int[] nums) {
         Arrays.sort(nums);
-        int median=nums[nums.length/2];
         int count=0;
-        for(int ele:nums){
-            count+=Math.abs(median-ele);
+        int left=0;
+        int right=nums.length-1;
+        while(left<right){
+            count+=nums[right]-nums[left];
+            left++;
+            right--;
         }
-        
         return count;
     }
 }
