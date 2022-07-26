@@ -13,9 +13,9 @@ class Solution {
         
         for(int i=0;i<n;i++){
             int val=Math.abs(nums[i]);
-            if(val<=n){
+            if(val<=n){//if val is lower or equal to length of array
                 int idx=val-1;
-                if(nums[idx]>0){
+                if(nums[idx]>0){ //if number is only +ve
                     nums[idx]=-1*nums[idx];
                 }
             }
