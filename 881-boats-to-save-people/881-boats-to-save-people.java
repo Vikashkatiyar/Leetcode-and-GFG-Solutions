@@ -1,4 +1,6 @@
 class Solution {
+    //O(nlogn)
+    //Target sum pair category
     public int numRescueBoats(int[] people, int limit) {
         int ans=0;
         Arrays.sort(people);
