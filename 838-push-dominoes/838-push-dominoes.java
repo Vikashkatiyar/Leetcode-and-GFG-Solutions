@@ -5,17 +5,7 @@ class Solution {
         
         char[] arr = dominoes.toCharArray();
         for(int i = 1; i < arr.length; i++){
-            if(arr[i] == 'R'){
-                if(arr[pi] == 'L'){
-                    // nothing to do
-                } else if(arr[pi] == 'R'){
-                    for(int x = pi + 1; x < i; x++){
-                        arr[x] = 'R';
-                    }
-                }
-                
-                pi= i;
-            } else if(arr[i] == 'L'){
+             if(arr[i] == 'L'){
                 if(arr[pi] == 'L'){
                     for(int x = pi + 1; x < i; x++){
                         arr[x] = 'L';
@@ -32,6 +22,16 @@ class Solution {
                 }
                 
                 pi = i;
+            }else if(arr[i] == 'R'){
+                if(arr[pi] == 'L'){
+                    // nothing to do
+                } else if(arr[pi] == 'R'){
+                    for(int x = pi + 1; x < i; x++){
+                        arr[x] = 'R';
+                    }
+                }
+                
+                pi= i;
             }
         }
         
