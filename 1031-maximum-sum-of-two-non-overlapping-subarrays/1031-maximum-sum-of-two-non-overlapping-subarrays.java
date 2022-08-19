@@ -14,7 +14,7 @@ class Solution {
             sum+=nums[i];
             if(i==f-1){
                 left[i]=sum;
-            }else if(i>=f-1){
+            }else if(i>f-1){
                 sum-=nums[i-f];
                 left[i]=Math.max(sum,left[i-1]);
             }
