@@ -1,29 +1,21 @@
-
-// TC:O(NlogN)+O(N){sorting+traversing whole array}
 class Solution {
     public int[][] merge(int[][] intervals) {
-        List<int[]> res=new ArrayList<>();
-        if(intervals.length==0 || intervals==null){
-            return res.toArray(new int[0][]);
-        }
+        Arrays.sort(intervals,(a,b)->{return a[0]-b[0];});
         
-        Arrays.sort(intervals,(a,b)->a[0]-b[0]);//Tc:O(NlogN)
-        
-        int start=intervals[0][0];
-        int end=intervals[0][1];
-        
-        for(int []i:intervals){
-            if(i[0]<=end){
-                end=Math.max(i[1],end);
+        ArrayList<int []> list=new ArrayList<>();
+        for(int []interval:intervals){
+            if(list.size()==0){
+                list.add(interval);
             }
             else{
-                res.add(new int[]{start,end});
-                start=i[0];
-                end=i[1];
+                int [] lastinterval=list.get(list.size()-1);
+                if(interval[0]>lastinterval[1]){
+                    list.add(interval);
+                }else{
+                    lastinterval[1]=Math.max(lastinterval[1],interval[1]);
+                }
             }
         }
-        
-        res.add(new int[]{start,end});
-        return res.toArray(new int[0][]);
+        return list.toArray(new int[list.size()][2]);
     }
 }
