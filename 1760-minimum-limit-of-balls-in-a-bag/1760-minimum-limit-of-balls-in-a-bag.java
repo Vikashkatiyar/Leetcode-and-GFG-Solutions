@@ -1,4 +1,6 @@
+//Similar to Split Array Largest Sum
 class Solution {
+    //TC:O(nlog(sum_of_all_elements_of_array))
     public int minimumSize(int[] nums, int maxOperations) {
         int lo=1;
         int hi=0;
