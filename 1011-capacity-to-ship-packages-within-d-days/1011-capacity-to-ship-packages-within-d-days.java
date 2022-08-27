@@ -1,10 +1,10 @@
 class Solution {
-    public int shipWithinDays(int[] nums, int m) {
+    public int shipWithinDays(int[] weights, int days) {
         int hi=0;
         int lo=Integer.MIN_VALUE;
-        for(int num:nums){
-            hi+=num;
-            lo=Math.max(num,lo);
+        for(int wt:weights){
+            hi+=wt;
+            lo=Math.max(wt,lo);
         }
        
         while(lo<hi){
@@ -12,17 +12,17 @@ class Solution {
             
             int countParts=1;
             int currPartSum=0;
-            for(int num:nums){
-                if(currPartSum+num<=mid){
-                    currPartSum+=num;
+            for(int wt:weights){
+                if(currPartSum+wt<=mid){
+                    currPartSum+=wt;
                 }else{
                     
-                    currPartSum=num;
+                    currPartSum=wt;
                     countParts++;
                 }
             }
             
-            if(countParts>m){
+            if(countParts>days){
                 lo=mid+1;
             }else{
                 hi=mid;
