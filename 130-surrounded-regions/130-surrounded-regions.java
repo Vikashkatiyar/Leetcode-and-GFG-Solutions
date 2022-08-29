@@ -2,7 +2,8 @@ class Solution {
     public void solve(char[][] board) {
         int m=board.length;
         int n=board[0].length;
-        for(int i=0;i<board.length;i++){
+        
+        for(int i=0;i<board.length;i++){//for first and last row
             if(board[i][0]=='O')
                 dfs(board,i,0);
             if(board[i][n-1]=='O')
@@ -10,7 +11,7 @@ class Solution {
         }
         
         
-        for(int j = 0; j < n; j++){
+        for(int j = 0; j < n; j++){//for first and last column
             if(board[0][j] == 'O')
                 dfs(board, 0, j);
             if(board[m - 1][j] == 'O')
@@ -18,7 +19,7 @@ class Solution {
         }
         
         
-        for(int i = 0; i < m; i++){
+        for(int i = 0; i < m; i++){//for whole matrix
             for(int j = 0; j < n; j++){
                 if(board[i][j] == 'O') 
                     board[i][j] = 'X';
@@ -32,7 +33,10 @@ class Solution {
      public void dfs(char[][] board, int i, int j) {
          int m=board.length;
         int n=board[0].length;
-        if(i < 0 || j < 0 || i >= m || j >= n || board[i][j] != 'O') return;
+        if(i < 0 || j < 0 || i >= m || j >= n || board[i][j] != 'O')
+            return;
+         
+         
         board[i][j] = '1';
         dfs(board, i + 1, j);
         dfs(board, i - 1, j);
