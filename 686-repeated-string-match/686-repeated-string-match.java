@@ -19,11 +19,12 @@ class Solution {
         int [] lps=getLPS(pat);
         int i=0;
         int j=0;
-        while(i<txt.length() && j<pat.length()){
+        while(i<txt.length()){
             if(txt.charAt(i)==pat.charAt(j)){
                 i++;
                 j++;
-               
+               if(j == pat.length())
+                    return true;
                 
             }else if(j==0){
                 i++;
@@ -31,9 +32,6 @@ class Solution {
                 j=lps[j-1];
             }
         }
-        if(j == pat.length())
-            return true;
-        else 
             return false;
     }
     public int[] getLPS(String pat){
