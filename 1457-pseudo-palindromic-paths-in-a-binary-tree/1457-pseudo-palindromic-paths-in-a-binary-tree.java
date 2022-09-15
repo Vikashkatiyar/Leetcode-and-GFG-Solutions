@@ -44,7 +44,7 @@ class Solution {
     public boolean isPalindromicPermutetion(int [] freq){
         boolean oddfrFound=false;
         for(int ele:freq){
-            if(ele%2!=0){
+            if(ele%2==1){
                 if(oddfrFound){
                     return false;
                 }else{
