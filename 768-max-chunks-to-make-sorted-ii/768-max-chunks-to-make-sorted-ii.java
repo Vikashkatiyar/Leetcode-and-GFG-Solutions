@@ -1,26 +1,26 @@
 class Solution {
     //O(n)
     //O(n)
+    //chainnig method 
+    
     public int maxChunksToSorted(int[] arr) {
-        
-        //make a min array fill from the right side
-        int []minfr=new int[arr.length];
-        minfr[arr.length-1]=arr[arr.length-1];
-        for(int i=arr.length-2;i>=0;i--){
-            minfr[i]=Math.min(arr[i],minfr[i+1]);
+        //1. Make rightminimum array
+         int [] rmin=new int[arr.length+1];
+        rmin[rmin.length-1]=Integer.MAX_VALUE;
+        for(int i=arr.length-1;i>=0;i--){
+            rmin[i]=Math.min(arr[i],rmin[i+1]);
         }
         
+        //2.Make leftMax Array then compare where lmax<=rmin[i+1]
         
-        //find max and check max from left <=minimum from right +1 from minfr
+        int lmax=Integer.MIN_VALUE;
         int count=0;
-        int max=Integer.MIN_VALUE;
-        for(int i=0;i<arr.length-1;i++){
-            max=Math.max(arr[i],max);
-            
-            if(max<=minfr[i+1]){
+        for(int i=0;i<arr.length;i++){
+            lmax=Math.max(lmax,arr[i]);
+            if(lmax<=rmin[i+1]){
                 count++;
             }
         }
-        return count+1;//  if barrier two then partition is 4
+        return count;
     }
 }
