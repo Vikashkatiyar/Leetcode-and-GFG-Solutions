@@ -1,24 +1,25 @@
 class Solution {
-    //O(n2)
+    //O(nlogn)
+    //compare the tail of every list
     public int lengthOfLIS(int[] nums) {
-        int []lis=new int[nums.length];
-        lis[0]=1;
+        int len=1;
+        int []tails=new int[nums.length];
+        tails[0]=nums[0];
         
-        for(int i=1;i<nums.length;i++){
-            int max=0;
-            for(int j=0;j<i;j++){
-                if(nums[j]<nums[i]){
-                    max=Math.max(max,lis[j]);
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]>tails[len-1]){
+                len++;
+                tails[len-1]=nums[i];
+            }else{
+                int idx=Arrays.binarySearch(tails,0,len-1,nums[i]);
+                //it gives me the right position no of the element if exist then +ve or +ve not index so index=index-1
+                if(idx<0){
+                    idx=-idx;
+                    idx=idx-1;
                 }
+                tails[idx]=nums[i];
             }
-            lis[i]=max+1;
         }
-        
-        int count=0;
-        for(int val:lis){
-            count=Math.max(count,val);
-        }
-        return count;
-        
+        return len;
     }
 }
