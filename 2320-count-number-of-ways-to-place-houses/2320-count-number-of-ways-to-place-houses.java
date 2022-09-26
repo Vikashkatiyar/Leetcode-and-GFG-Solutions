@@ -1,4 +1,5 @@
 class Solution {
+    // count binary String without occuring consecutive o's pattern 
     static int MOD=1000000007;
     public int countHousePlacements(int n) {
         long s=1;
@@ -10,9 +11,9 @@ class Solution {
             b=c;
         }
         
-     long tot=(s+b)%MOD;
-     long ans=(tot*tot)%MOD;
-        return (int)ans;
+       long tot=(s+b)%MOD;
+       long ans=(tot*tot)%MOD;
+       return (int)ans;
     }
     
 }
