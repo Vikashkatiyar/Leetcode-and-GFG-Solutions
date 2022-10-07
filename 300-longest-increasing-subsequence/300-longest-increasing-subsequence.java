@@ -6,7 +6,7 @@ class Solution {
         int []tails=new int[nums.length];
         tails[0]=nums[0];
         
-        for(int i=0;i<nums.length;i++){
+        for(int i=1;i<nums.length;i++){
             if(nums[i]>tails[len-1]){
                 len++;
                 tails[len-1]=nums[i];
