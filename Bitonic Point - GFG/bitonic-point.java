@@ -46,6 +46,6 @@ class Solution {
                 right=mid-1;
             }
         }
-        return arr[left];
+        return arr[right];
     }
 }
