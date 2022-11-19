@@ -6,12 +6,14 @@ class Solution {
             hi+=num;
             lo=Math.max(num,lo);
         }
-        int ans=0;
+        
+        
+       
         while(lo<hi){
             int mid=(lo+hi)/2;
             
             if(isPossible(nums,mid,m)==true){
-                ans=mid;
+                
                 hi=mid;
             }
             else{
