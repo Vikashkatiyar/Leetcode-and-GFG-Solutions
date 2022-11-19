@@ -4,11 +4,11 @@ class Solution {
         int j=0;
         for(int num:pushed){
             st.push(num);
-            while(!st.isEmpty() && st.peek()==popped[j]){
+            while(st.size()>0 && st.peek()==popped[j]){
                 st.pop();
                 j++;
             }
         }
-        return st.size()==0;
+        return j==popped.length;
     }
 }
