@@ -27,15 +27,35 @@ class GfG {
 //User function Template for Java
 
 class Solution {
+    
+    public int[] findLps(String str){
+        int []lps=new int[str.length()];
+        int len=0;
+        int i=1;
+        while(i<str.length()){
+            if(str.charAt(i)==str.charAt(len)){
+                lps[i]=len+1;
+                len++;
+                i++;
+            }else{
+                if(len>0){
+                    len=lps[len-1];
+                }else{
+                    lps[i]=0;
+                    i++;
+                    len=0;
+                }
+            }
+        }
+        return lps;
+    }
     public int[] longestCommonPrefix(String s1, String s2){
-         int []arr=new int[2];
-         
-         for(int i=1;i<s1.length();i++){
-             if(s2.contains(s1.substring(0,i))){
-                 arr[0]=0;
-                 arr[1]=i-1;
-             }
+         String s=s1+"&"+s2;
+         int []lps=findLps(s);
+         int max=0;
+         for(int i=s1.length()+1;i<lps.length;i++){
+             max=Math.max(max,lps[i]);
          }
-         return arr;
+         return new int[]{0,max-1};
     }
 }
