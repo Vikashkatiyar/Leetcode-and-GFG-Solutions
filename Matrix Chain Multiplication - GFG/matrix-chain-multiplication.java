@@ -41,10 +41,10 @@ class Solution{
                     dp[i][j]=arr[i]*arr[j]*arr[j+1];
                 }else{
                     int min=Integer.MAX_VALUE;
-                    for(int k1=1,k2=g;k1<=g;k1++,k2--){
-                        int left=dp[i][j-k2];//arr[i]arr[j-k2+1]
-                        int right=dp[i+k1][j];//arr[i+k1]arr[j+1]
-                        int mul=arr[i]*arr[j+1]*arr[i+k1];
+                    for(int k=i;k<j;k++){
+                        int left=dp[i][k];
+                        int right=dp[k+1][j];
+                        int mul=arr[i]*arr[k+1]*arr[j+1];
                         
                         min=Math.min(min,left+right+mul);
                     }
