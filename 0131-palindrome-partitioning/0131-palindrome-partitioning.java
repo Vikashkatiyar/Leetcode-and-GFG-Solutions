@@ -1,32 +1,27 @@
 class Solution {
-    ArrayList<List<String>> ans;
     public List<List<String>> partition(String s) {
-        ans=new ArrayList<>();
-        helper(s,new ArrayList<String>());
-        return ans;
+        
+      List<List<String>> res=new ArrayList<>();
+        List<String> temp=new ArrayList<>();
+        helper(0,s,temp,res);
+        return res;
     }
     
-    public void helper(String str,ArrayList<String> asf){
-        if(str.length()==0){
-            ans.add(new ArrayList<>(asf));
+    public void helper(int idx,String s,List<String> temp,List<List<String>> res){
+        if(idx==s.length()){
+            res.add(new ArrayList<>(temp));
             return;
         }
         
-        
-        
-        for(int i=0;i<str.length();i++){
-            String sub=str.substring(0,i+1);
-            String ros=str.substring(i+1);
-            if(isPalindrome(sub)){
-                asf.add(sub);
-                helper(ros,asf);
-                asf.remove(asf.size()-1);
+        for(int i=idx;i<s.length();i++){
+            String lstr=s.substring(idx,i+1);
+            if(isPalindrome(lstr)){
+                temp.add(lstr);
+                helper(i+1,s,temp,res);
+                temp.remove(temp.size()-1);
             }
         }
-        
-        
     }
-    
     
     public boolean isPalindrome(String s){
         int left=0;
@@ -40,4 +35,5 @@ class Solution {
         }
         return true;
     }
+    
 }
