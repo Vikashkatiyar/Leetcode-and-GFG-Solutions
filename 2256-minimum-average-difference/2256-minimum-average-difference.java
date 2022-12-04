@@ -2,7 +2,10 @@ class Solution {
     public int minimumAverageDifference(int[] nums) {
         int n=nums.length;
         long leftSum=0;
-        long rightSum = Arrays.stream(nums).asLongStream().sum();
+        long rightSum = 0;
+        for(int nm:nums){
+            rightSum+=nm;
+        }
         
         int minAvg=Integer.MAX_VALUE;
         int ans=0;
