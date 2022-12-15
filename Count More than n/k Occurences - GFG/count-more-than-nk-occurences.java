@@ -36,8 +36,8 @@ class Solution
         
         int check=n/k;
         int count=0;
-        for(int key:map.keySet()){
-            if(map.get(key)>check){
+        for(int key:map.values()){
+            if(key>check){
                 count++;
             }
         }
