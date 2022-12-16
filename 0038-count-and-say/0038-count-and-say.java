@@ -6,22 +6,25 @@ class Solution {
         }
         return s;
     }
-    public String countAndSayHelp(String s){
-        StringBuilder sb=new StringBuilder();
-        char previous=s.charAt(0);
+    public String countAndSayHelp(String str){
+        String s="";
+        char prev=str.charAt(0);
         int count=1;
-        for(int i=1;i<s.length();i++){
-            if(s.charAt(i)==previous){
+        for(int i=1;i<str.length();i++){
+            
+            char curr=str.charAt(i);
+            if(curr==prev){
                 count++;
             }else{
-                sb.append(count);
-                sb.append(previous);
-                previous=s.charAt(i);
+                s+=count;
+                s+=prev;
+                prev=curr;
                 count=1;
             }
         }
-        sb.append(count);
-        sb.append(previous);
-        return sb.toString();
+        s+=count;
+        s+=prev;
+        return s;
+        
     }
 }
