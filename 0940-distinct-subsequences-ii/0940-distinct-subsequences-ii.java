@@ -18,9 +18,7 @@ class Solution {
             }
             lo[chIdx]=i;
         }
-        if(dp[s.length()] < 0){
-            dp[s.length()] += MOD;
-        }
+        
         return (int)((dp[s.length()] - 1+MOD) % MOD);
     }
 }
