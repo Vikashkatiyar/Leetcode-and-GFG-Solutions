@@ -1,8 +1,6 @@
 class Solution {
     public int maximumBags(int[] capacity, int[] rocks, int additionalRocks) {
         
-        
-        
         for(int i=0;i<rocks.length;i++){
             capacity[i]=capacity[i]-rocks[i];
         }
