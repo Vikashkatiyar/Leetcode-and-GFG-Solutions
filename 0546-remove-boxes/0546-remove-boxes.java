@@ -13,14 +13,21 @@ class Solution {
             return dp[i][j][k];
         }
         
+        //when aaaaabc....-> a^4.abc optimization
+        int ii=i;
+        int kk=k;
+        while(ii+1<=j && boxes[ii+1]==boxes[ii]){
+            ii++;
+            kk++;
+        }
         
         
-        int res=(k+1)*(k+1)+helper(boxes,i+1,j,0,dp);
+        int res=(kk+1)*(kk+1)+helper(boxes,ii+1,j,0,dp);
         
-        for(int m=i+1;m<=j;m++){
-            if(boxes[m]==boxes[i]){
-                int fact=helper(boxes,i+1,m-1,0,dp)+
-                    helper(boxes,m,j,k+1,dp);
+        for(int m=ii+1;m<=j;m++){
+            if(boxes[m]==boxes[ii]){
+                int fact=helper(boxes,ii+1,m-1,0,dp)+
+                    helper(boxes,m,j,kk+1,dp);
                 
                 res=Math.max(res,fact);
             }
