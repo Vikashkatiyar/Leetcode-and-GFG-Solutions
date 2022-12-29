@@ -42,9 +42,9 @@ class Sol
         
         int []dp=new int[A.length()];
         for(int i=0;i<dp.length;i++){
-            if(dict.contains(A.substring(0,i+1))){
+            if(dict.contains(A.substring(0,i+1))){ //first check the first window (0,i)
                 dp[i]=1;
-            }else{
+            }else{      // after the window portion check 
                 for(int j=0;j<i;j++){
                     if(dp[j]==1 && dict.contains(A.substring(j+1,i+1))){
                         dp[i]=1;
