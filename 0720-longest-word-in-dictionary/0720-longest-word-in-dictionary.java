@@ -20,19 +20,22 @@ class Solution {
             temp.eow=true;
         }
         
-        helper(root,"");
+        helper(root,new StringBuilder());
         return  res;
     }
-    
-    public void helper(Node node,String asf){
-        if(asf.length()>res.length()){
-            res=asf;
+     
+    //traverse where * exist and end with a world
+    public void helper(Node node,StringBuilder sb){
+        if(sb.length()>res.length()){
+            res=sb.toString();
         }
         
         for(char ch='a';ch<='z';ch++){
             Node child=node.children[ch-'a'];
             if(child!=null && child.eow==true){
-                helper(child,asf+ch);
+                sb.append(ch);
+                helper(child,sb);
+                sb.deleteCharAt(sb.length()-1);
             }
         }
     }
