@@ -23,7 +23,7 @@ class Solution {
         List<String> ans=new ArrayList<String>();
         for(String word:words){
             flag=false;
-            wordbreak(word,0);
+            wordbreak(word,0,0);
             if(flag==true)
                 ans.add(word);
         }
@@ -34,21 +34,21 @@ class Solution {
     
     
     boolean flag=false;
-    void wordbreak(String word,int wsf){
-        if(word.length()==0){
-            if(wsf>=2){ // if given word is breakable into more than two words that present in already words array then it word is a answer 
+    void wordbreak(String word,int j,int wsf){
+        if(word.length()==j){
+            if(wsf>=2){  
                 flag=true;
                 return ;
             }
         }
         
         Node temp=root;
-        for(int i=0;i<word.length();i++){ //
+        for(int i=j;i<word.length();i++){ 
             char ch=word.charAt(i);
             if(temp.children[ch-'a']!=null){
                 temp=temp.children[ch-'a'];
                 if(temp.eow==true){
-                   wordbreak(word.substring(i+1),wsf+1); //if word is find then call the rest of the String and check in all words exist or not
+                   wordbreak(word,i+1,wsf+1);
                 }
             }else{
                 return;
