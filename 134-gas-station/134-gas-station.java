@@ -1,5 +1,6 @@
 class Solution {
     //O(n)
+    //O(1)
     public int canCompleteCircuit(int[] gas, int[] cost) {
         int csum=0;
         int osum=0;
