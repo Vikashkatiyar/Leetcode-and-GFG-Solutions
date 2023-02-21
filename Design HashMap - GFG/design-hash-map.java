@@ -44,26 +44,26 @@ class GFG {
 //User function Template for Java
 
 class MyHashMap {
-
+     int[] arr;
     /** Initialize your data structure here. */
-    HashMap<Integer,Integer> map;
     MyHashMap() {
-        map=new HashMap<Integer,Integer>();
+        arr=new int[10001];
+        Arrays.fill(arr,-1);
     }
 
     /** value will always be non-negative. */
     void put(int key, int value) {
-        map.put(key,value);
+        arr[key]=value;
     }
 
     /** Returns the value to which the specified key is mapped, or -1 if this map contains no mapping for the key */
     int get(int key) {
-        return map.get(key)==null?-1:map.get(key);
+        return arr[key];
     }
 
     /** Removes the mapping of the specified value key if this map contains a mapping for the key */
     void remove(int key) {
-        map.remove(key);
+       arr[key]=-1; 
     }
 
 }
