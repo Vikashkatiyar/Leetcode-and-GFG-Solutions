@@ -1,6 +1,7 @@
 class Solution {
     public boolean validPath(int n, int[][] edges, int source, int destination) {
-        //convert matrix to list
+        
+     //Convert Matrix to List
         
         ArrayList<Integer>[] graph=new ArrayList[n];
         for(int i=0;i<n;i++){
@@ -8,34 +9,32 @@ class Solution {
         }
         
         for(int i=0;i<edges.length;i++){
-            int u=edges[i][0];
-            int v=edges[i][1];
+            int v1=edges[i][0];
+            int v2=edges[i][1];
             
-            graph[u].add(v);
-            graph[v].add(u);
+            graph[v1].add(v2);
+            graph[v2].add(v1);
         }
         
-        boolean []visited=new boolean[n];
-        return helper(graph,source,destination,visited);
+        boolean[] vis=new boolean[n];
+        return hasPath(graph,source,destination,vis);
     }
     
-    
-    
-    // Has a path ?
-    public boolean helper(ArrayList<Integer>[] graph,int src,int dest,boolean[] visited)
-    {
+    public boolean hasPath(ArrayList<Integer>[] graph,int src,int dest,boolean[] vis){
         if(src==dest){
             return true;
         }
-        visited[src]=true;
+        
+        vis[src]=true;
         for(int nbr:graph[src]){
-            if(visited[nbr]==false){
-                boolean hasNbrPath=helper(graph,nbr,dest,visited);
+            if(vis[nbr]==false){
+                boolean hasNbrPath=hasPath(graph,nbr,dest,vis);
                 if(hasNbrPath==true){
                     return true;
                 }
             }
         }
+        
         return false;
     }
 }
