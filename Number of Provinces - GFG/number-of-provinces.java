@@ -52,7 +52,7 @@ class Solution {
             for(int j =0;j<adj.get(i).size();j++){
                 if(adj.get(i).get(j)==1){
                     graph.get(i).add(j);
-                    
+                    graph.get(j).add(i);
                 }
             }
         }
