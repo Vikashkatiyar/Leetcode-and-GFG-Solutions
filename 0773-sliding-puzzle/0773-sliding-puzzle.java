@@ -1,4 +1,6 @@
 class Solution {
+    //Jai Bhole
+    //Refer to Pepcoding Youtube 
     public int slidingPuzzle(int[][] board) {
         //There is only one test case
         
@@ -13,7 +15,7 @@ class Solution {
         }
         String initial=sb.toString();
         
-        
+        //statically possible loaction of swapping from every index
         int[][] swapIdx= {{1, 3}, {0, 2, 4}, {1, 5}, {0, 4}, {1, 3, 5}, {2, 4}};
         
         //Simple BFS
