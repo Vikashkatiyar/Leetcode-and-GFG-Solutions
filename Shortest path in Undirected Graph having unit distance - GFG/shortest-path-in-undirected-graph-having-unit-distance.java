@@ -37,7 +37,7 @@ class Solution {
         ArrayList<ArrayList<Integer>> gList=new ArrayList<>();
         int []dist=new int[n];
         for(int i=0;i<n;i++){
-            dist[i]=(int)1e9;
+            dist[i]=Integer.MAX_VALUE;
             gList.add(new ArrayList<>());
         }
         
@@ -70,7 +70,7 @@ class Solution {
         
         
         for(int i=0;i<n;i++){
-            if(dist[i]==(int)1e9){
+            if(dist[i]==Integer.MAX_VALUE){
                 dist[i]=-1;
             }
         }
