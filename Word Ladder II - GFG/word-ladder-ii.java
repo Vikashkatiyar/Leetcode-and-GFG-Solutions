@@ -61,20 +61,27 @@ class Solution
 {
     public ArrayList<ArrayList<String>> findSequences(String startWord, String targetWord, String[] wordList)
     {
+        //Make wordList to set for searching the word O(1)
         Set<String> set=new  HashSet<>();
         int len=wordList.length;
         for(String s:wordList){
             set.add(s);
         }
         
+        
+        //make queue of ArrayList
         Queue<ArrayList<String>> q=new LinkedList<>();
         ArrayList<String> ls=new ArrayList<>();
         ls.add(startWord);
         q.add(ls);
         
+        
+        //when allpossible words of same word was added in queue then we remove usedOnLevel Strings
         ArrayList<String> usedOnLevel=new ArrayList<>();
         usedOnLevel.add(startWord);
         
+        
+        //use level for erase the used Strings 
         int level=0;
         
         
