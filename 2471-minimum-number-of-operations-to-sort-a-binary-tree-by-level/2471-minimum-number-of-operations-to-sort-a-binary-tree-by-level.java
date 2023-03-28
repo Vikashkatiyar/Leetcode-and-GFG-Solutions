@@ -15,61 +15,58 @@
  */
 class Solution {
     public int minimumOperations(TreeNode root) {
-        return helper(root);
-    }
-    
-    int helper(TreeNode node){
-        Queue<TreeNode> q=new LinkedList<>();
-        q.add(node);
-        int count=0;
-        while(q.size()!=0){
+        LinkedList<TreeNode> q=new LinkedList<>();
+        q.addLast(root);
+        int res=0;
+        while(q.size()>0){
+            int[] arr=new int[q.size()];
             int size=q.size();
-            int []arr=new int[size];
-            for(int i=0;i<size;i++){
-                TreeNode currNode=q.poll();
-                if(currNode.left!=null){
-                    q.add(currNode.left);
+            int i=0;
+            while(size-->0){
+                TreeNode rem=q.removeFirst();
+                arr[i++]=rem.val;
+                
+                if(rem.left!=null){
+                    q.add(rem.left);
                 }
                 
-                if(currNode.right!=null){
-                    q.add(currNode.right);
+                if(rem.right!=null){
+                    q.add(rem.right);
                 }
-                arr[i]=currNode.val;
             }
-            count+=minSwaps(arr);
+            res+=minSwaps(arr);
+            
         }
-        return count;
+        return res;
     }
     
-    public int minSwaps(int nums[])
-    {
-        // Code here
-        int n=nums.length;
-        int []temp=new int[n];
+    public int minSwaps(int [] arr){
         HashMap<Integer,Integer> map=new HashMap<>();
-        for(int i=0;i<nums.length;i++){
-            temp[i]=nums[i];
-            map.put(nums[i],i);
+        int [] temp=new int[arr.length];
+        for(int i=0;i<arr.length;i++){
+            temp[i]=arr[i];
+            map.put(arr[i],i);
         }
-        Arrays.sort(temp);
         
-        //convert nums array -> temp array
-        int count=0;
-        for(int i=0;i<n;i++){
-              if(temp[i]!=nums[i]){
-                  count++;
-                  int idx=map.get(temp[i]);
-                  swap(nums,i,idx);
-                  map.put(nums[i],i);
-                  map.put(nums[idx],idx);
-              }
+        Arrays.sort(temp);
+        int ans=0;
+        for(int i=0;i<arr.length;i++){
+            if(arr[i]!=temp[i]){
+                ans++;
+                int init=arr[i];
+                swap(arr,i,map.get(temp[i]));
+                
+                //update on  map
+                map.put(init,map.get(temp[i]));
+                map.put(temp[i],i);
+            }
         }
-        return count;
+        return ans;
     }
     
-   public static void swap(int []arr,int i,int j){
-        int temp=arr[i];
-        arr[i]=arr[j];
-        arr[j]=temp;
+    public void swap(int[]arr,int l,int r){
+        int temp=arr[l];
+        arr[l]=arr[r];
+        arr[r]=temp;
     }
 }
