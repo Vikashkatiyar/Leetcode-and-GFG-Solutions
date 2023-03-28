@@ -34,6 +34,8 @@ public class Main{
 // User function Template for Java
 
 class Solution{
+    //Jai bhole
+    //Prim's Algorithum
     static class Pair implements Comparable<Pair> {
         int v;
         int wt;
