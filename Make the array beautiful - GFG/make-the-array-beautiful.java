@@ -56,10 +56,10 @@ class Solution {
         for(int num:arr){
             if(ans.size()==0){
                 ans.add(num);
-            }else if((ans.get(ans.size()-1)>=0 && num<0 )||(ans.get(ans.size()-1)<0 && num>=0)){
-                ans.remove(ans.size()-1);
-            }else{
+            }else if((ans.get(ans.size()-1)>=0 && num>=0 )||(ans.get(ans.size()-1)<0 && num<0)){
                 ans.add(num);
+            }else{
+                ans.remove(ans.size()-1);
             }
         }
         return ans;
