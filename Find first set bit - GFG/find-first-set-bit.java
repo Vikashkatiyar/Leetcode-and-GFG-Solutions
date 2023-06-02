@@ -36,7 +36,8 @@ class Solution
             return 0;
         }
             
-        return logBase2(Integer.lowestOneBit(n));
+        int rsb=(n&-n);
+        return logBase2(rsb);
             
     }
 }
