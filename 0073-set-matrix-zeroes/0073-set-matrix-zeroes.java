@@ -1,36 +1,31 @@
 class Solution {
     public void setZeroes(int[][] mat) {
+        //O(nm) 
+        //O(n+m)
+        int n=mat.length;
+        int m=mat[0].length;
         
-        int row=mat.length;
-        int col=mat[0].length;
+        int[] row=new int[n];
+        int []col=new int[m];
         
-        boolean[] rowArr=new boolean[row];
-        boolean[] colArr=new boolean[col];
-        
-        for(int i=0;i<mat.length;i++){
-            for(int j=0;j<mat[0].length;j++){
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
                 if(mat[i][j]==0){
-                    rowArr[i]=true;
-                    colArr[j]=true;
+                    row[i]=1;
+                    col[j]=1;
                 }
             }
         }
         
-        for(int i=0;i<mat.length;i++){
-            if(rowArr[i]==true){
-                for(int j=0;j<mat[0].length;j++){
+        
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(row[i]==1 || col[j]==1 ){
                     mat[i][j]=0;
                 }
             }
-            
         }
         
-        for(int j=0;j<mat[0].length;j++){
-            if(colArr[j]==true){
-                for(int i=0;i<mat.length;i++){
-                    mat[i][j]=0;
-                }
-            }
-        }
+       
     }
 }
