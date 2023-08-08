@@ -16,16 +16,19 @@
 class Solution {
     int max=Integer.MIN_VALUE;
     public int maxPathSum(TreeNode root) {
-        helper(root);
+        findH(root);
         return max;
     }
     
-    public int helper(TreeNode root){
-        if(root==null) return 0;
+    public int findH(TreeNode root){
+        if(root==null){
+            return 0;
+        }
         
-        int leftSum=helper(root.left);
-        int rightSum=helper(root.right);
-        max=Math.max(max,root.val+(leftSum<0?0:leftSum)+(rightSum<0?0:rightSum));
-        return Math.max((leftSum<0?0:leftSum),(rightSum<0?0:rightSum))+root.val;
+        int lh=findH(root.left);
+        int rh=findH(root.right);
+        
+        max=Math.max(max,(lh<0?0:lh)+(rh<0?0:rh)+root.val);
+        return root.val+Math.max((lh<0?0:lh),(rh<0?0:rh));
     }
 }
