@@ -10,6 +10,7 @@ class Solution {
     //     }
     //     return count;
     // }
+    
     public int[] countBits(int n) {
         
 //         Approach1:-O(nlogn)
@@ -22,17 +23,17 @@ class Solution {
         
         
             // Approach2:-O(nlogn)
-            // int[] ans=new int[n+1];
-            // for(int i=0;i<=n;i++){
-            //     ans[i]=Integer.bitCount(i);
-            // }
-            // return ans;
+            int[] ans=new int[n+1];
+            for(int i=0;i<=n;i++){
+                ans[i]=Integer.bitCount(i);
+            }
+            return ans;
         
        // Approach3:-DP+BitMasking =>O(1)
-            int[] res=new int[n+1];
-            for(int idx=1;idx<=n;idx++){
-                res[idx]=res[(idx>>1)]+(idx & 1);  //res[idx]=res[(idx/2)]+(idx%2);
-            }
-        return res;
+            // int[] res=new int[n+1];
+            // for(int idx=1;idx<=n;idx++){
+            //     res[idx]=res[(idx>>1)]+(idx & 1);  //res[idx]=res[(idx/2)]+(idx%2);
+            // }
+            // return res;
     }
 }
