@@ -31,6 +31,8 @@ class GFG {
 // } Driver Code Ends
 
 
+
+
 // User function Template for Java
 
 class Solution {
@@ -45,6 +47,9 @@ class Solution {
     }
     int MOD=100000;
     int minimumMultiplications(int[] arr, int start, int end) {
+        if(start==end){
+            return 0;
+        }
         Queue<Pair> q=new LinkedList<>();
         q.add(new Pair(start,0));
         
