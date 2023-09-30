@@ -18,24 +18,39 @@ class Solution {
         if(root==null){
             return root;
         }
+        Queue<TreeNode> q=new LinkedList<>();
+        q.add(root);
+        int level=0;
         
-        traverse(root.left, root.right,1);
+        while(!q.isEmpty()){
+            int size=q.size();
+            
+            while(size-->0){
+                TreeNode temp=q.remove();
+                if(temp.left!=null){
+                    q.add(temp.left);
+                }
+                if(temp.right!=null){
+                    q.add(temp.right);
+                }
+            }
+            
+            level++;
+            if(level%2==1 && !q.isEmpty()){
+                int []num=new int[q.size()];
+                int i=0;
+                for(TreeNode t:q){
+                    num[i++]=t.val;
+                }
+                
+                int j=q.size()-1;
+                for(TreeNode t:q){
+                    t.val=num[j--];
+                }
+            }
+        }
+        
         return root;
-    }
-    
-    public void traverse(TreeNode node1, TreeNode node2,int level){
-        if(node1==null || node2==null){
-            return;
-        }
-        
-        if(level%2==1){
-            int temp=node1.val;
-            node1.val=node2.val;
-            node2.val=temp;
-        }
-        traverse(node1.left,node2.right,level+1);
-        traverse(node1.right,node2.left,level+1);
-        
         
     }
 }
