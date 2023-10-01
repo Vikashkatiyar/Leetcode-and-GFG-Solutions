@@ -8,27 +8,31 @@ class GFG
 {
     public static void main(String args[])throws IOException
     {
-        Scanner sc = new Scanner(System.in);
-        int t = sc.nextInt();
+        BufferedReader in=new BufferedReader(new InputStreamReader(System.in));
+        PrintWriter out=new PrintWriter(System.out);
+        int t = Integer.parseInt(in.readLine().trim());
         
         while(t-- > 0)
         {
-            int n = sc.nextInt();
-            int m = sc.nextInt();
-            
-            int matrix[][] = new int[n][m];
-            
-            for(int i = 0; i < n; i++)
-            {
-                for(int j = 0; j < m; j++)
-                 matrix[i][j] = sc.nextInt();
+            String s[] = in.readLine().trim().split(" ");
+            int n = Integer.parseInt(s[0]);
+            int m = Integer.parseInt(s[1]);
+            int a[][] = new int[n][m];
+            s = in.readLine().trim().split(" ");
+            int ind=0;
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < m; j++) {
+                    a[i][j] = Integer.parseInt(s[ind++]);
+                }
             }
             Solution ob = new Solution();
-            ArrayList<Integer> ans = ob.boundaryTraversal(matrix, n, m);
-            for (Integer val: ans) 
-                System.out.print(val+" "); 
-            System.out.println();
+            ArrayList<Integer> ans = ob.boundaryTraversal(a, n, m);
+            for (int i : ans) {
+                out.print(i + " ");
+            }
+            out.println();
         }
+        out.close();
     }
 }
 // } Driver Code Ends
@@ -42,38 +46,29 @@ class Solution
     //traversal of the matrix in a clockwise manner.
     static ArrayList<Integer> boundaryTraversal(int matrix[][], int n, int m)
     {
-       ArrayList<Integer> list=new ArrayList<>();
-       if(n==1 || m==1){
-           for(int i=0;i<n;i++){
-               for(int j=0;j<m;j++){
-                   list.add(matrix[i][j]);
-               }
-           }
-           
-       }
-       else{
-           //1st row
-           for(int i=0;i<m;i++){
-               list.add(matrix[0][i]);
-           }
-           
-           // last col
-           
-           for(int i=1;i<n;i++){
-               list.add(matrix[i][m-1]);
-           }
-           
-           //last row
-           
-           for(int i=m-2;i>=0;i--){
-               list.add(matrix[n-1][i]);
-           }
-           
-           //first col
-           for(int i=n-2;i>=1;i--){
-               list.add(matrix[i][0]);
-           }
-       }
-       return list;
+        ArrayList<Integer> ans=new ArrayList<>();
+        
+        for(int i=0;i<m;i++){
+            ans.add(matrix[0][i]);
+        }
+        
+        for(int j=1;j<n;j++){
+            ans.add(matrix[j][m-1]);
+        }
+        
+        if(n>1){
+          for(int i=m-2;i>=0;i--){
+            ans.add(matrix[n-1][i]);
+           }  
+        }
+        
+        if(m>1){
+           for(int j=n-2;j>0;j--){
+            ans.add(matrix[j][0]);
+           } 
+        }
+        
+        return ans;
+        
     }
 }
