@@ -22,34 +22,48 @@ class GFG{
 //User function Template for Java
 
 class Solution{
-    //O(n3)  Solution MCM group question
-    static int palindromicPartition(String str)
+    static int palindromicPartition(String s)
     {
-        int [][] dp=new int[str.length()][str.length()];
-        
-        for(int g=0;g<dp.length;g++){
-            for(int i=0,j=g;j<dp[0].length;i++,j++){
+       int n=s.length();
+        boolean[][] dp=new boolean[n][n];
+        // fill table of all the substring of a string is palindrome or not
+        for(int g=0;g<n;g++){
+            for(int i=0,j=g;j<dp.length;i++,j++){
                 if(g==0){
-                    dp[i][j]=0;
-                }
-                else if(g==1){
-                    dp[i][j]=(str.charAt(i)==str.charAt(j))?0:1;
-                }
-                else{
-                    if(str.charAt(i)==str.charAt(j) && dp[i+1][j-1]==0){
-                        dp[i][j]=0;
-                    }
-                    else{
-                        dp[i][j]=Integer.MAX_VALUE;
-                        for(int lk=g,rk=1;lk>=1;lk--,rk++){
-                            int left=dp[i][j-lk];
-                            int right=dp[i+rk][j];
-                            dp[i][j]=Math.min(dp[i][j],left+right+1);
-                        }
+                    dp[i][j]=true;
+                }else if(g==1){
+                    dp[i][j]=s.charAt(i)==s.charAt(j);
+                }else{
+                    if(s.charAt(i)==s.charAt(j) && dp[i+1][j-1]==true){
+                        dp[i][j]=true;
+                    } else{
+                        dp[i][j]=false;
                     }
                 }
             }
         }
-        return dp[0][dp[0].length-1];
+        
+        //main code
+        int [] strg=new int[n];
+        strg[0]=0;
+        for(int j=1;j<n;j++){
+            if(dp[0][j]){
+                    strg[j]=0;
+            }else{
+                int min=Integer.MAX_VALUE;
+                for(int i=j;i>=1;i--){
+                    if(dp[i][j]){
+                        if(strg[i-1]<min){
+                            min=strg[i-1]+1;
+                        }
+                    }
+                }
+
+                strg[j]=min;
+            }
+            
+        }
+        
+        return strg[n-1];
     }
 }
