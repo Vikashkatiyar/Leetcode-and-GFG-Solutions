@@ -1,19 +1,21 @@
 class Solution {
-    public boolean isNStraightHand(int[] nums, int k) {
+    public boolean isNStraightHand(int[] hands, int groupSize) {
         PriorityQueue<Integer> pq=new PriorityQueue<>();
-        for(int num:nums){
-            pq.offer(num);
+        
+        for(int hand: hands){
+            pq.add(hand);
         }
         
         while(!pq.isEmpty()){
             int ele=pq.peek();
-            for(int i=0;i<k;i++){
+            
+            for(int i=0;i<groupSize;i++){
                 if(pq.remove(ele+i)==false){
-                    //The remove method returns true if an object passed as a parameter is removed from the list. Otherwise, it returns false
                     return false;
                 }
             }
         }
+        
         return true;
     }
 }
